@@ -30,7 +30,9 @@ resource "aws_instance" "ansible_master" {
     apt install -y ansible python3 python3-pip unzip
     pip3 install boto boto3
   EOF
-
+  tags = {
+    Name = "Ansible-master"
+  }
 }
 
 resource "aws_instance" "ansible_worker1" {
@@ -45,7 +47,9 @@ resource "aws_instance" "ansible_worker1" {
     apt install -y python3 python3-pip
     pip3 install boto boto3
   EOF
-
+  tags = {
+    Name = "Ansible-Worker1"
+   }
   }
 
 resource "aws_instance" "ansible_worker2" {
@@ -60,7 +64,9 @@ resource "aws_instance" "ansible_worker2" {
     yum install -y python3 python3-pip
     pip3 install boto boto3
   EOF
-
+  tags = {
+    Name = "Ansible-Worker2"
+    }
   }
 
 
