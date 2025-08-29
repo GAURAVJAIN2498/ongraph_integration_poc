@@ -1,5 +1,10 @@
 pipeline {
     agent any
+    environment {
+        AWS_ACCESS_KEY_ID     = credentials('aws-access-key-id')    #add credentials as secret text in jenkins global credentials
+        AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
+        AWS_DEFAULT_REGION    = 'us-east-1'
+    }
     stages {
         stage('Checkout') {
             steps {
@@ -18,8 +23,8 @@ pipeline {
         }
         stage('Apply') {
             steps {
-                sh 'terraform apply -auto-approve'
+                sh 'terraform apply --auto-approve'
             }
         }
-    }
+    } 
 }
