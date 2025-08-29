@@ -8,7 +8,7 @@ resource "aws_security_group" "ansible_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["3.89.66.210/32"]
+    cidr_blocks = ["3.84.223.31/32"]
   }
   egress {
     from_port   = 0
