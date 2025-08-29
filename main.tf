@@ -21,7 +21,7 @@ resource "aws_security_group" "ansible_sg" {
 resource "aws_instance" "ansible_master" {
   ami           = "ami-00ca32bbc84273381" 
   instance_type = "t2.micro"
-  key_name      = /root/poc.key
+  key_name      = poc-key.pem
   security_groups = [aws_security_group.ansible_sg.name]
 
   user_data = <<-EOF
@@ -38,7 +38,7 @@ resource "aws_instance" "ansible_master" {
 resource "aws_instance" "ansible_worker1" {
   ami           = "ami-0bbdd8c17ed981ef9"
   instance_type = "t2.micro"
-  key_name      = /root/poc.key
+  key_name      = poc-key.pem
   security_groups = [aws_security_group.ansible_sg.name]
 
   user_data = <<-EOF
@@ -55,7 +55,7 @@ resource "aws_instance" "ansible_worker1" {
 resource "aws_instance" "ansible_worker2" {
   ami           = "ami-0bbdd8c17ed981ef9" 
   instance_type = "t2.micro"
-  key_name      = /root/poc.key
+  key_name      = poc-key.pem
   security_groups = [aws_security_group.ansible_sg.name]
 
   user_data = <<-EOF
