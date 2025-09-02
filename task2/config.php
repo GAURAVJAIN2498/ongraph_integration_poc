@@ -1,7 +1,7 @@
 <?php
 $host = "172.31.21.118";
-$user = "appuser";
-$password = "apppass";
+$user = "testapp";
+$password = "testpass";
 $dbname = "loginapp";
 
 $conn = new MYSQLi($host, $user, $password, $dbname);
