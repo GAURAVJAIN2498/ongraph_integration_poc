@@ -1,7 +1,8 @@
-- hosts: worker1
+
+- hosts: localhost
   tasks:
     - name:  install docker
-      yum:
+      apt:
         name: docker
         state: present
 
@@ -13,13 +14,13 @@
 
     - name: Add ec2-user to docker group
       user:
-        name: ec2-user
+        name: ongraph
         groups: docker
         append: yes
 
     - name: Clone sample PHP login-signup app
       copy:
-        src:  /root/poc-task2/config.php
+        src:  /home/ongraph/ongraph_integration_poc/task2/config.php
         dest: /home/ec2-user/php-app
 
     - name: create container
@@ -31,4 +32,4 @@
         published_ports:
           - "80:80"
         volumes:
-          - /home/ec2-user/php-app:/var/www/html
+          - /home/ongraph/ongraph_integration_poc/task2:/var/www/html
