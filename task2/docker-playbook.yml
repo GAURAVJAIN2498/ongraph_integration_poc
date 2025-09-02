@@ -1,0 +1,34 @@
+- hosts: worker1
+  tasks:
+    - name:  install docker
+      yum:
+        name: docker
+        state: present
+
+    - name: Start Docker service
+      service:
+        name: docker
+        state: started
+        enabled: true
+
+    - name: Add ec2-user to docker group
+      user:
+        name: ec2-user
+        groups: docker
+        append: yes
+
+    - name: Clone sample PHP login-signup app
+      copy:
+        src:  /root/poc-task2/config.php
+        dest: /home/ec2-user/php-app
+
+    - name: create container
+      docker_container:
+        name: php-app
+        image: php:7.4-apache
+        state: started
+        restart_policy: always
+        published_ports:
+          - "80:80"
+        volumes:
+          - /home/ec2-user/php-app:/var/www/html
