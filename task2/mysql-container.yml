@@ -30,3 +30,4 @@
           MYSQL_PASSWORD: apppass
         published_ports:
           - "3306:3306"
+
