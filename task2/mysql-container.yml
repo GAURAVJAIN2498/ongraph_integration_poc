@@ -1,7 +1,7 @@
-- hosts: worker2
+- hosts: localhost
   tasks:
     - name: install docker
-      yum:
+      apt:
         name: docker
         state: present
 
@@ -13,7 +13,7 @@
 
     - name: add ec2 user to docker
       user:
-        name: ec2-user
+        name: ongraph
         groups: docker
         append: yes
 
